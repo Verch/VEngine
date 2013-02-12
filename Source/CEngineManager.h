@@ -3,13 +3,13 @@
 #include <d3d9.h>
 // 
 //#include "GraphicsManager.h"
-//#include "InputManager.h"
-// #include "OutputLog.h"
+//#include "InputManager.h" // CKeyboard & CMouse agregation
+//#include "AudioManager.h"
+//#include "ObjectManager.h"
+//#include "TimeManager.h"
 class EngineManager
 {
-private:
-protected:
 public:
-	void Make();
-
+	EngineManager();
+	~EngineManager();
 };

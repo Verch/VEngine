@@ -5,8 +5,20 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine, 
 {
 	boost::shared_ptr<ApiWindow> windowMain(new ApiWindow);
 	windowMain->SetName(L"VEngine");
-	windowMain->ClassRegistration(hInstance);
-	windowMain->Create(hInstance,nCmdShow);
+	if (!windowMain->ClassRegistration(hInstance)) 
+	{
+		MessageBox(NULL,L"Ошибка установки параметров и получения класса окна",L"Ошибка Windows",MB_OK);
+		return 0;
+	}
+
+	if (!windowMain->Create(hInstance,nCmdShow))
+	{
+		MessageBox(NULL,L"Ошибка завершения создания класса окна и получения его дискриптора",L"Ошибка Windows",MB_OK);
+		return 0;
+	}
+
+	boost::shared_ptr<EngineManager> engine(new EngineManager);
+
 
 	MSG msg;
 	ZeroMemory(&msg,sizeof(msg));
